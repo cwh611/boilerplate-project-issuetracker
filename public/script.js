@@ -76,6 +76,7 @@ const findCreatedOnInput = document.getElementById("created-on-find");
 const findUpdatedOnInput = document.getElementById("updated-on-find");
 
 document.getElementById("find-btn").addEventListener("click", (event) => {
+    event.preventDefault();
     const urlParams = new URLSearchParams;
     const titleInput = findTitleInput.value;
     if (titleInput) urlParams.append("issue_text", titleInput);
