@@ -15,7 +15,7 @@ document.getElementById("create-project-btn").addEventListener("click", (event) 
     })
     .then(response => response.json())
     .then(data => {
-        console.log("CLIENT:", response.data);
+        console.log("CLIENT:", data);
         document.getElementById("select-project").innerHTML += `
             <option value="${projectNameInput}" id="project-${projectCounter}">${projectNameInput}</option>`;
         selectedProject = projectNameInput;
