@@ -48,7 +48,7 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
     const createdByInput = submitCreatedByInput.value;
     const assignedToInput = submitAssignedToInput.value ? submitAssignedToInput.value : "";
     const statusTextInput = submitStatusTextInput.value ? submitStatusTextInput.value : "";
-    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/${selectedProject}`, {
+    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -91,7 +91,7 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
     if (createdOnInput) urlParams.append("created_on", createdOnInput);
     const updatedOnInput = findUpdatedOnInput.value;
     if (updatedOnInput) urlParams.append("updated_on", updatedOnInput);
-    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/${selectedProject}?${urlParams}`)
+    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}?${urlParams}`)
         .then(response => response.json())
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -104,7 +104,7 @@ const deleteIssueInput = document.getElementById("delete-issue-input");
 document.getElementById("delete-issue-btn").addEventListener("click", (event) => {
     event.preventDefault();
     const issueToDelete = deleteIssueInput.value;
-    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/${selectedProject}`, {
+    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
