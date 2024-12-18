@@ -1,34 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Issue Tracker</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="../public/style.css">
   </head>
   <body>
     <header>
       <h1>Issue Tracker</h1>
     </header>
     <main>
-      <form>
-        <fielset>
-          <legend>Find / Submit Issue:</legend>
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="name" required>
-          <label for="text">Text:</label>
-          <input type="text" id="text" name="text" required>
-          <label for="created-by">Created by:</label>
-          <input type="text" id="created-by" name="created-by" required>
-          <label for="assigned-to">Assigned to:</label>
-          <input type="text" id="assigned-to" name="assigned-to">
-          <label for="status">Status:</label>
-          <input type="text" id="status" name="status">
-        </fieldset>
-        <button id="submit-btn">Submit</button>
-        <button id="find-btn">Find</button>
-      </form>
+      <div id="project-input-container">
+        <label for="project-name">New Project:</label>
+        <input id="project-name-input" type="text" name="project-name" required>
+        <button id="create-project-btn">Create</button>
+      </div>
+      <div id="project-select-container">
+        <label for="select-project">Select Project:</label>
+        <select id="select-project" name="select-project">
+          <option value="" disabled selected>Select a project</option>
+        </select>
+        <button id="select-project-btn">Select</button>
+      </div>
+      <div id="current-project-container">
+        <span id="current-project-span">
+          Current Project:
+        </span>
+        <span id="project-name-span">
+        </span>
+      </div>
+      <div id="main-container">
+        <form id="form-submit">
+          <fieldset>
+            <legend>Submit Issue:</legend>
+            <label for="title">Title:</label>
+            <input type="text" id="title-submit" name="name" required>
+            <label for="text">Text:</label>
+            <input type="text" id="text-submit" name="text" required>
+            <label for="created-by">Created by:</label>
+            <input type="text" id="created-by-submit" name="created-by" required>
+            <label for="assigned-to">Assigned to:</label>
+            <input type="text" id="assigned-to-submit" name="assigned-to">
+            <label for="status-text">Status:</label>
+            <input type="text" id="status-text-submit" name="status">
+          </fieldset>
+          <button id="submit-btn" type="submit">Submit</button>
+        </form>       
+        <form id="form-update">
+          <fieldset>
+            <legend>Update Issue:</legend>
+            <label for="_id">_id:</label>
+            <input type="text" id="_id-update">
+            <label for="title">Title:</label>
+            <input type="text" id="title-update" name="name">
+            <label for="text">Text:</label>
+            <input type="text" id="text-update" name="text">
+            <label for="created-by">Created by:</label>
+            <input type="text" id="created-by-update" name="created-by">
+            <label for="assigned-to">Assigned to:</label>
+            <input type="text" id="assigned-to-update" name="assigned-to">
+            <label for="status-text">Status:</label>
+            <input type="text" id="status-text-update" name="status">
+          </fieldset>
+          <button id="update-btn" type="submit">Update</button>
+        </form>
+        <form id="form-find">
+          <fieldset>
+            <legend>Find Issue:</legend>
+            <label for="title-find">Title:</label>
+            <input type="text" id="title-find" name="name" required>
+            <label for="text-find">Text:</label>
+            <input type="text" id="text-find" name="text" required>
+            <label for="created-by-find">Created by:</label>
+            <input type="text" id="created-by-find" name="created-by" required>
+            <label for="assigned-to-find">Assigned to:</label>
+            <input type="text" id="assigned-to-find" name="assigned-to">
+            <label for="status-text-find">Status:</label>
+            <input type="text" id="status-text-find" name="status">
+            <label for="created-on-find">Created on:</label>
+            <input type="text" id="created-on-find" name="created-on">
+            <label for="updated-on-find">Updated on:</label>
+            <input type="text" id="updated-on-find" name="updated-on">
+          </fieldset>
+          <button id="find-btn" type="submit">Find</button>
+        </form>  
+        <div id="delete-issue-container">
+          <label for="delete-issue-input">Delete Issue:</label>
+          <input id="delete-issue-input" type="text">
+          <button id="delete-issue-btn" type="submit">
+        </div>
+      </div>
     </main>
     <script src="../public/script.js"></script>
     <footer>

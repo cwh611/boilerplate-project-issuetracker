@@ -1,5 +1,6 @@
 "use strict";
 
+let projects = [];
 let issues = [];
 let idCounter = 1;
 
@@ -125,4 +126,11 @@ module.exports = function (app) {
             return res.json({  result: "successfully deleted", _id: req.body._id })
       }
   });
+
+  app.post("/api/:project", function (req, res) {
+    const project = req.params.project;
+    projects.push(project);
+    res.status(200).json({result: `succesfully added ${project}`})
+  });
+
 };
