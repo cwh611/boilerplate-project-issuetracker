@@ -5,7 +5,7 @@ let issues = [];
 let idCounter = 1;
 
 module.exports = function (app) {
-  
+
   app
     .route("/api/issues/:project")
 
@@ -81,12 +81,12 @@ module.exports = function (app) {
         return res.status(400).json({ error: "Project not found" });
       }    
       if (req.body && !req.body._id) {
-        return res.json({ error: "missing _id" });
+        return res.json({ error: "missing _id (1)" });
       }
 
       const { _id, issue_title, issue_text, created_by, status_text, open, assigned_to } = req.body;
       if (!_id) {
-        return res.json({ error: "missing _id" });
+        return res.json({ error: "missing _id (2)" });
       }
 
       if (!issue_title && !issue_text && !created_by && !status_text && !open && !assigned_to) {

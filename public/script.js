@@ -107,8 +107,10 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
             console.log(data);
             document.body.innerHTML = `
                 <div>
-                    ${JSON.stringify(data)}
-                <div>`;
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                </div>
+                <button onclick="window.history.back()">Go Back</button>
+            `;
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -137,6 +139,7 @@ document.getElementById("update-btn").addEventListener("click", (event) => {
             "Content-Type": "application/json"
             },
         body: JSON.stringify({
+            _id: _idToUpdate,
             issue_title: titleInput,
             issue_text: textInput,
             created_by: createdByInput,
