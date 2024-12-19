@@ -15,7 +15,7 @@ document.getElementById("create-project-btn").addEventListener("click", (event) 
     })
     .then(response => response.json())
     .then(data => {
-        console.log("CLIENT:", data);
+        if (data.error) return console.log(data.error);
         document.getElementById("select-project").innerHTML += `
             <option value="${projectNameInput}" id="project-${projectCounter}">${projectNameInput}</option>`;
         selectedProject = projectNameInput;
@@ -61,6 +61,9 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
             status_text: statusTextInput
             })
     })  .then(response => response.json())
+        .then(data => {
+            if (data.error) return console.log(data.error)
+        })
         .catch(error => {
         console.error("CLIENT Error:", error);
         alert("An error occurred. Please try again.");
@@ -97,6 +100,9 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
     if (updatedOnInput) urlParams.append("updated_on", updatedOnInput);
     fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}?${urlParams}`)
         .then(response => response.json())
+        .then(data => {
+            if (data.error) return console.log(data.error)
+        })
         .catch(error => {
             console.error("CLIENT Error:", error);
             alert("An error occurred. Please try again.");
@@ -132,6 +138,9 @@ document.getElementById("update-btn").addEventListener("click", (event) => {
             })
     })
         .then(response => response.json())
+        .then(data => {
+            if (data.error) return console.log(data.error)
+        })
         .catch(error => {
             console.error("CLIENT Error:", error);
             alert("An error occurred. Please try again.");
@@ -157,7 +166,7 @@ document.getElementById("delete-issue-btn").addEventListener("click", (event) =>
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        if(data.error) return console.log(data.error);
       })
       .catch(error => {
         console.error("CLIENT Error:", error);

@@ -10,8 +10,9 @@ module.exports = function (app) {
 
     .get(function (req, res) {
       const projectName = req.params.project;
-      console.log("GET REQ PARAM:", projectName);
-      console.log("GET REQ QUERY:", req.query);
+      if (!projects.includes(projectName)) {
+        return res.json({error: "Failed to find project in database"})
+      }
       const sanitizedQuery = {};
       for (const key in req.query) {
         sanitizedQuery[key.trim()] = req.query[key];
@@ -33,15 +34,14 @@ module.exports = function (app) {
 
     .post(function (req, res) {
       const project = req.params.project;
-      console.log("POST REQ PARAM:", project);
-      console.log("POST REQ BODY:", req.body);
+      if (!projects.includes(project)) {
+        return res.json({error: "Failed to find project in database"})
+      }
       const issueTitle = req.body.issue_title;
       const issueText = req.body.issue_text;
       const createdBy = req.body.created_by;
       const createdOn = new Date();
       const createdOnString = createdOn.toISOString();
-      console.log("CREATED ON:", createdOn);
-      console.log("CREATED ON STRING:", createdOnString);
       const id = idCounter.toString();
       let updatedOn = "";
       let assignedTo = "";
@@ -69,7 +69,6 @@ module.exports = function (app) {
             open
           };
           res.json(response);
-          console.log("RESPONSE:", response);
           issues.push({...response, project});
           idCounter++;
       }
@@ -77,8 +76,6 @@ module.exports = function (app) {
 
     .put(function (req, res) {
       let project = req.params.project;
-      console.log("PUT REQ PARAM:", project);
-      console.log("PUT REQ BODY:", req.body);
       if (!projects.includes(project)) {
         return res.status(400).json({ error: "Project not found" });
       }    
@@ -98,7 +95,7 @@ module.exports = function (app) {
       const element = issues.find((el) => el._id === _id);
 
       if (!element) {
-        return res.json({ error: "could not update", _id });
+        return res.json({ error: "Issue _id not found in database", _id });
       }
 
       if (issue_title) element.issue_title = issue_title;
@@ -120,7 +117,7 @@ module.exports = function (app) {
       if (!req.body._id) {
         return res.json({ error: "missing _id" });
       }  else if (!issues.find((el) => el._id === req.body._id)) {
-          return res.json({ error: "could not delete", _id: req.body._id });
+          return res.json({ error: "Issue _id not found in database", _id: req.body._id });
       }  else {
            const updatedArray = issues.filter(el => el._id !== req.body._id);
             issues = updatedArray;
