@@ -83,11 +83,11 @@ const findUpdatedOnInput = document.getElementById("updated-on-find");
 
 document.getElementById("find-btn").addEventListener("click", (event) => {
     event.preventDefault();
-    const urlParams = new URLSearchParams;
+    const urlParams = new URLSearchParams();
     const _idInput = find_idInput.value;
     if (_idInput) urlParams.append("_id", _idInput);
     const titleInput = findTitleInput.value;
-    if (titleInput) urlParams.append("issue_text", titleInput);
+    if (titleInput) urlParams.append("issue_title", titleInput);
     const textInput = findTextInput.value;
     if (textInput) urlParams.append("issue_text", textInput);
     const createdByInput = findCreatedByInput.value;
@@ -100,17 +100,17 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
     if (createdOnInput) urlParams.append("created_on", createdOnInput);
     const updatedOnInput = findUpdatedOnInput.value;
     if (updatedOnInput) urlParams.append("updated_on", updatedOnInput);
-    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}?${urlParams}`)
+
+    // Fetch issues from the /api/issues/:project/find endpoint
+    fetch(`/api/issues/${selectedProject}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) return console.log(data.error);
-            console.log(data);
-            document.body.innerHTML = `
-                <div>
-                    <pre>${JSON.stringify(data, null, 2)}</pre>
-                </div>
-                <button onclick="window.history.back()">Go Back</button>
-            `;
+
+            // Redirect to issues.html and pass the data as a query parameter
+            const issuesUrl = new URL(window.location.origin + '/issues.html');
+            issuesUrl.searchParams.append('issues', JSON.stringify(data));  // Add issues as a query parameter
+            window.location.href = issuesUrl; // Navigate to the issues page
         })
         .catch(error => {
             console.error("CLIENT Error:", error);

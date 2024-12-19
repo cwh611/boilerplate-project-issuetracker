@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issues</title>
+</head>
+<body>
+    <h1>Issues</h1>
+    <ul id="issues-list"></ul>
+
+    <script>
+        // Parse the issues data from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const issues = JSON.parse(urlParams.get('issues'));
+
+        const issuesList = document.getElementById('issues-list');
+        issues.forEach(issue => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <h3>${issue.issue_title}</h3>
+                <p>${issue.issue_text}</p>
+                <p>Created by: ${issue.created_by}</p>
+                <p>Status: ${issue.status_text}</p>
+            `;
+            issuesList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

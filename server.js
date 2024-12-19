@@ -19,20 +19,23 @@ app.use(cors({origin: '*'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.route('/:project/')
-  .get(function (req, res) {
-    res.sendFile(process.cwd() + '/views/issue.html');
-  });
-
+// Serve index.html for the root route
 app.route('/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-fccTestingRoutes(app);
+// Serve issues.html for the issues page
+app.route('/issues.html')
+  .get(function (req, res) {
+    res.sendFile(process.cwd() + '/views/issues.html');
+  });
 
+// Testing and API routes
+fccTestingRoutes(app);
 apiRoutes(app);  
-    
+
+// Handle 404 errors
 app.use(function(req, res, next) {
   res.status(404)
     .type('text')
@@ -54,4 +57,4 @@ const listener = app.listen(process.env.PORT || 3000, function () {
   }
 });
 
-module.exports = app; 
+module.exports = app;
