@@ -128,9 +128,6 @@ module.exports = function (app) {
 
   app.post("/api/:project", function (req, res) {
     const project = req.params.project;
-    if (!req.body.projectName) {
-      return res.status(400).json({ error: "Project name is required" });
-    }   
     if (projects.includes(project)) {
       return res.status(400).json({ error: "Project already exists" });
     }
