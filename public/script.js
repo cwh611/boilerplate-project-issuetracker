@@ -62,8 +62,9 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
             })
     })  .then(response => response.json())
         .then(data => {
-            if (data.error) return console.log(data.error)
-            console.log(data)
+            if (data.error) return console.log(data.error);
+            console.log(data);
+            document.getElementById("results-container").innerText = data;
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -102,8 +103,12 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
     fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}?${urlParams}`)
         .then(response => response.json())
         .then(data => {
-            if (data.error) return console.log(data.error)
-            console.log(data)
+            if (data.error) return console.log(data.error);
+            console.log(data);
+            document.body.innerHTML = `
+                <div>
+                    ${data}
+                <div>`;
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -141,8 +146,9 @@ document.getElementById("update-btn").addEventListener("click", (event) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.error) return console.log(data.error)
-            console.log(data)
+            if (data.error) return console.log(data.error);
+            console.log(data);
+            document.getElementById("results-container").innerText = data;
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -170,7 +176,8 @@ document.getElementById("delete-issue-btn").addEventListener("click", (event) =>
       })
       .then((data) => {
         if(data.error) return console.log(data.error);
-        console.log(data)
+        console.log(data);
+        document.getElementById("results-container").innerText = data;
       })
       .catch(error => {
         console.error("CLIENT Error:", error);

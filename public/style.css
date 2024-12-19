@@ -60,8 +60,7 @@ select {
   display: flex;
   justify-content: space-evenly;
   flex: 1;
-  margin-bottom: 25px;
-  margin-top: 25px
+  margin-top: 50px
 }
 
 form {
@@ -99,8 +98,15 @@ button {
   color: white;
 }
 
+#results-container {
+  font-size: 20px;
+  margin-left: 105px;
+  margin-top: 50px
+}
+
 #delete-issue-container {
   font-size: 20px;
-  margin-left: 100px;
-  margin-bottom: 25px
+  margin-left:105px;
+  margin-bottom: 50px;
+  margin-top: 25px;
 }
