@@ -18,7 +18,7 @@
         issues.forEach(issue => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
-                <h3>${issue.issue_title}</h3>
+                <h3>Issue Title:${issue.issue_title}</h3>
                 <p>${issue.issue_text}</p>
                 <p>Created by: ${issue.created_by}</p>
                 <p>Status: ${issue.status_text}</p>
