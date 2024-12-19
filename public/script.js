@@ -64,7 +64,7 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
         .then(data => {
             if (data.error) return console.log(data.error);
             console.log(data);
-            document.getElementById("results-container").innerText = data;
+            document.getElementById("results-span").innerText = JSON.stringify(data);
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -107,7 +107,7 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
             console.log(data);
             document.body.innerHTML = `
                 <div>
-                    ${data}
+                    ${JSON.stringify(data)}
                 <div>`;
         })
         .catch(error => {
@@ -148,7 +148,7 @@ document.getElementById("update-btn").addEventListener("click", (event) => {
         .then(data => {
             if (data.error) return console.log(data.error);
             console.log(data);
-            document.getElementById("results-container").innerText = data;
+            document.getElementById("results-span").innerText = JSON.stringify(data);
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -177,7 +177,7 @@ document.getElementById("delete-issue-btn").addEventListener("click", (event) =>
       .then((data) => {
         if(data.error) return console.log(data.error);
         console.log(data);
-        document.getElementById("results-container").innerText = data;
+        document.getElementById("results-span").innerText = JSON.stringify(data);
       })
       .catch(error => {
         console.error("CLIENT Error:", error);
