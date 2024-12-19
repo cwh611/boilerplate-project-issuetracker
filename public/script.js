@@ -63,10 +63,11 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
     })  .then(response => response.json())
         .then(data => {
             if (data.error) return console.log(data.error)
+            console.log(data)
         })
         .catch(error => {
-        console.error("CLIENT Error:", error);
-        alert("An error occurred. Please try again.");
+            console.error("CLIENT Error:", error);
+            alert("An error occurred. Please try again.");
         });
 });
 
@@ -102,6 +103,7 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
         .then(response => response.json())
         .then(data => {
             if (data.error) return console.log(data.error)
+            console.log(data)
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -140,6 +142,7 @@ document.getElementById("update-btn").addEventListener("click", (event) => {
         .then(response => response.json())
         .then(data => {
             if (data.error) return console.log(data.error)
+            console.log(data)
         })
         .catch(error => {
             console.error("CLIENT Error:", error);
@@ -167,6 +170,7 @@ document.getElementById("delete-issue-btn").addEventListener("click", (event) =>
       })
       .then((data) => {
         if(data.error) return console.log(data.error);
+        console.log(data)
       })
       .catch(error => {
         console.error("CLIENT Error:", error);
