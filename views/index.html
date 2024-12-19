@@ -35,11 +35,11 @@
         <form id="form-submit">
           <fieldset>
             <legend>Submit Issue:</legend>
-            <label for="title">Title:</label>
+            <label for="title-submit">Title:</label>
             <input type="text" id="title-submit" name="name" required>
-            <label for="text">Text:</label>
+            <label for="text-submit">Text:</label>
             <input type="text" id="text-submit" name="text" required>
-            <label for="created-by">Created by:</label>
+            <label for="created-by-submit">Created by:</label>
             <input type="text" id="created-by-submit" name="created-by" required>
             <label for="assigned-to">Assigned to:</label>
             <input type="text" id="assigned-to-submit" name="assigned-to">
@@ -51,8 +51,8 @@
         <form id="form-update">
           <fieldset>
             <legend>Update Issue:</legend>
-            <label for="_id">_id:</label>
-            <input type="text" id="_id-update">
+            <label for="_id-update"><strong>_id to update:</strong></label>
+            <input type="text" id="_id-update" required>
             <label for="title">Title:</label>
             <input type="text" id="title-update" name="name">
             <label for="text">Text:</label>
@@ -69,6 +69,8 @@
         <form id="form-find">
           <fieldset>
             <legend>Find Issue:</legend>
+            <label for="_id-find">_id:</label>
+            <input type="text" id="_id-find">
             <label for="title-find">Title:</label>
             <input type="text" id="title-find" name="name">
             <label for="text-find">Text:</label>

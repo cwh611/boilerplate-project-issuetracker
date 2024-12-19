@@ -67,6 +67,7 @@ document.getElementById("submit-btn").addEventListener("click", (event) => {
         });
 });
 
+const find_idInput = document.getElementById("_id-find");
 const findTitleInput = document.getElementById("title-find");
 const findTextInput = document.getElementById("text-find");
 const findCreatedByInput = document.getElementById("created-by-find");
@@ -78,6 +79,8 @@ const findUpdatedOnInput = document.getElementById("updated-on-find");
 document.getElementById("find-btn").addEventListener("click", (event) => {
     event.preventDefault();
     const urlParams = new URLSearchParams;
+    const _idInput = find_idInput.value;
+    if (_idInput) urlParams.append("_id", _idInput);
     const titleInput = findTitleInput.value;
     if (titleInput) urlParams.append("issue_text", titleInput);
     const textInput = findTextInput.value;
@@ -93,6 +96,41 @@ document.getElementById("find-btn").addEventListener("click", (event) => {
     const updatedOnInput = findUpdatedOnInput.value;
     if (updatedOnInput) urlParams.append("updated_on", updatedOnInput);
     fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}?${urlParams}`)
+        .then(response => response.json())
+        .catch(error => {
+            console.error("CLIENT Error:", error);
+            alert("An error occurred. Please try again.");
+        });
+});
+
+const _idToUpdateInput = document.getElementById("_id-update");
+const updateTitleInput = document.getElementById("title-update");
+const updateTextInput = document.getElementById("text-update");
+const updateCreatedByInput = document.getElementById("created-by-update");
+const updateAssignedToInput = document.getElementById("assigned-to-update");
+const updateStatusTextInput = document.getElementById("status-text-update");
+
+document.getElementById("update-btn").addEventListener("click", (event) => {
+    event.preventDefault();
+    const _idToUpdate = _idToUpdateInput.value;
+    const titleInput = updateTitleInput.value ? updateTitleInput.value : "";
+    const textInput = updateTextInput.value ? updateTextInput.value : "";
+    const createdByInput = updateCreatedByInput.value ? updateCreatedByInput.value : "";
+    const assignedToInput = updateAssignedToInput.value ? updateAssignedToInput.value : "";
+    const statusTextInput = updateStatusTextInput.value ? updateStatusTextInput.value : "";
+    fetch(`https://chunk-issue-tracker-d7377a2244ef.herokuapp.com/api/issues/${selectedProject}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+            },
+        body: JSON.stringify({
+            issue_title: titleInput,
+            issue_text: textInput,
+            created_by: createdByInput,
+            assigned_to: assignedToInput,
+            status_text: statusTextInput
+            })
+    })
         .then(response => response.json())
         .catch(error => {
             console.error("CLIENT Error:", error);

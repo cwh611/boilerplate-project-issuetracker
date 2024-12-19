@@ -79,7 +79,9 @@ module.exports = function (app) {
       let project = req.params.project;
       console.log("PUT REQ PARAM:", project);
       console.log("PUT REQ BODY:", req.body);
-
+      if (!projects.includes(project)) {
+        return res.status(400).json({ error: "Project not found" });
+      }    
       if (req.body && !req.body._id) {
         return res.json({ error: "missing _id" });
       }
@@ -129,6 +131,9 @@ module.exports = function (app) {
 
   app.post("/api/:project", function (req, res) {
     const project = req.params.project;
+    if (!req.body.projectName) {
+      return res.status(400).json({ error: "Project name is required" });
+    }   
     if (projects.includes(project)) {
       return res.status(400).json({ error: "Project already exists" });
     }
